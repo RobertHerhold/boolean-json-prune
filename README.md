@@ -1,5 +1,7 @@
 # boolean-json-prune
 
+[![NPM](https://nodei.co/npm/boolean-json-prune.png)](https://npmjs.org/package/boolean-json-prune)
+
 This package cleans up [boolean-json](https://github.com/kemitchell/boolean-json-schema.json) expressions.
 
 ## Usage
