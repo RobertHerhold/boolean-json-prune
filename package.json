@@ -1,0 +1,31 @@
+{
+  "name": "boolean-json-prune",
+  "version": "1.0.0",
+  "description": "Prune boolean JSON expressions",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobertHerhold/boolean-json-prune.git"
+  },
+  "keywords": [
+    "JSON",
+    "boolean",
+    "prune"
+  ],
+  "author": "Robert Herhold <reherhold@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RobertHerhold/boolean-json-prune/issues"
+  },
+  "homepage": "https://github.com/RobertHerhold/boolean-json-prune#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
