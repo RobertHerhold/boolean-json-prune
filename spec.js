@@ -150,6 +150,56 @@ describe('Prune Boolean JSON', function() {
         });
     });
 
+    describe('Unnecessary Nested Conjunction/Disjunction Removal', function() {
+        it('should remove an unnecessary conjunction inside a disjunction (#1)', function() {
+            // Here you only need to have "foo" for the expression to evaluate to true
+            const input = {
+                or: ['foo', {
+                    and: ['foo', 'bar', 'baz']
+                }]
+            };
+
+            expect(prune(input)).to.equal('foo');
+        });
+
+        it('should remove an unnecessary conjunction inside a disjunction (#2)', function() {
+            // Here you only need to have "foo" or "foo2" for the expression to evaluate to true
+            const input = {
+                or: ['foo', {
+                    and: ['foo', 'bar', 'baz']
+                }, 'foo2']
+            };
+
+            expect(prune(input)).to.eql({
+                or: ['foo', 'foo2']
+            });
+        });
+
+        it('should remove an unnecessary conjunction inside a disjunction (#1)', function() {
+            // Here you only need to have "foo" for the expression to evaluate to true
+            const input = {
+                and: ['foo', {
+                    or: ['foo', 'bar', 'baz']
+                }]
+            };
+
+            expect(prune(input)).to.equal('foo');
+        });
+
+        it('should remove an unnecessary conjunction inside a disjunction (#1)', function() {
+            // Here you only need to have "foo" and "foo2" for the expression to evaluate to true
+            const input = {
+                and: ['foo', {
+                    or: ['foo', 'bar', 'baz']
+                }, 'foo2']
+            };
+
+            expect(prune(input)).to.eql({
+                and: ['foo', 'foo2']
+            });
+        });
+    });
+
     describe('Mixed operations', function() {
         it('should remove duplicates from different conjunction groups', function() {
             const input = {

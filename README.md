@@ -78,3 +78,37 @@ Output:
     "and": ["foo", "bar"]
 }
 ```
+
+### Removing redundant nested conjunctions/disjunctions 
+
+Input:
+
+```json
+{
+    "or": ["foo", {
+        "and": ["foo", "bar", "baz"]
+    }]
+}
+```
+
+Output:
+
+```json
+"foo"
+```
+
+Input:
+
+```json
+{
+    "and": ["foo", {
+        "or": ["foo", "bar", "baz"]
+    }]
+}
+```
+
+Output:
+
+```json
+"foo"
+```
