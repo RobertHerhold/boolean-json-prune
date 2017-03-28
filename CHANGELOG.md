@@ -1,3 +1,7 @@
+## 1.1.0 - 2017-03-28
+### Added
+- Removes redundant nested conjunctions/disjunctions (conjunction inside disjunction or disjunction inside conjunction)
+
 ## 1.0.1 - 2017-03-28
 ### Changed
 - Deduplications, if resulting in an array of a single element, return that element
