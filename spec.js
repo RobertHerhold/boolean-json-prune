@@ -132,6 +132,22 @@ describe('Prune Boolean JSON', function() {
                 or: ['foo', 'bar']
             });
         });
+
+        it('should deduplicate a conjunction to a single value', function() {
+            const input = {
+                and: ['foo', 'foo']
+            };
+
+            expect(prune(input)).to.equal('foo');
+        });
+
+        it('should deduplicate a conjunction to a single value', function() {
+            const input = {
+                or: ['foo', 'foo']
+            };
+
+            expect(prune(input)).to.equal('foo');
+        });
     });
 
     describe('Mixed operations', function() {

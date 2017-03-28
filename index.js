@@ -22,6 +22,11 @@ function pruneExpression(expression) {
 
         expression.and = uniqWith(expression.and, isEqual);
 
+        // If there is only one element left after deduplication, just return that
+        if (expression.and.length === 1) {
+            return expression.and[0];
+        }
+
         return expression;
     } else if ('or' in expression) {
         for (let i = 0; i < expression.or.length; i++) {
@@ -37,6 +42,11 @@ function pruneExpression(expression) {
         }
 
         expression.or = uniqWith(expression.or, isEqual);
+
+        // If there is only one element left after deduplication, just return that
+        if (expression.or.length === 1) {
+            return expression.or[0];
+        }
 
         return expression;
     }
