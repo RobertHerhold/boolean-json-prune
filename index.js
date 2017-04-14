@@ -5,17 +5,17 @@ const { uniqWith, isEqual, intersection } = require('lodash');
 function pruneExpression(expression) {
     if (typeof expression === 'string') {
         return expression;
-    } else if ('not' in expression) {
+    } else if (expression.not) {
         expression.not = pruneExpression(expression.not);
         return expression;
-    } else if ('and' in expression) {
+    } else if (expression.and) {
         for (let i = 0; i < expression.and.length; i++) {
             const andExpression = expression.and[i];
-            if (typeof andExpression === 'object' && 'and' in andExpression) {
+            if (typeof andExpression === 'object' && andExpression.and) {
                 // Remove the nested 'and' expression and insert its contents
                 expression.and.splice(i, 1, ...andExpression.and);
                 i--; // bump counter back since we just inserted more items w/ the splice
-            } else if (typeof andExpression === 'object' && 'or' in andExpression) {
+            } else if (typeof andExpression === 'object' && andExpression.or) {
                 // Check if there are any common variables between the base group and any nested "or" groups
                 const variablesInGroup = expression.and.filter(item => typeof item === 'string');
                 if (intersection(variablesInGroup, andExpression.or).length > 0) {
@@ -38,15 +38,15 @@ function pruneExpression(expression) {
         }
 
         return expression;
-    } else if ('or' in expression) {
+    } else if (expression.or) {
         for (let i = 0; i < expression.or.length; i++) {
             const orExpression = expression.or[i];
-            if (typeof orExpression === 'object' && 'or' in orExpression) {
+            if (typeof orExpression === 'object' && orExpression.or) {
                 // Remove the nested 'or' expression and insert its contents
                 expression.or.splice(i, 1, ...orExpression.or);
                 // bump counter back since we just inserted more items w/ the splice
                 i--;
-            } else if (typeof orExpression === 'object' && 'and' in orExpression) {
+            } else if (typeof orExpression === 'object' && orExpression.and) {
                 // Check if there are any common variables between the base group and any nested "and" groups
                 const variablesInGroup = expression.or.filter(item => typeof item === 'string');
                 if (intersection(variablesInGroup, orExpression.and).length > 0) {
