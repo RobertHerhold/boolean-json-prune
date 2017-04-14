@@ -1,3 +1,8 @@
+## 1.1.1 - 2017-04-14
+### Changed
+- Stop using the "in" keyword for checking child expressions
+- Add the "boolean-json" keyword to `package.json`
+
 ## 1.1.0 - 2017-03-28
 ### Added
 - Removes redundant nested conjunctions/disjunctions (conjunction inside disjunction or disjunction inside conjunction)
