@@ -13,6 +13,7 @@
   "keywords": [
     "JSON",
     "boolean",
+    "boolean-json",
     "prune"
   ],
   "author": "Robert Herhold <reherhold@gmail.com>",
